@@ -16,10 +16,10 @@ public class Tarefa {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	public Long id;
-	public String nome;
-	public String descricao;
-	public Date dataInicio;
+	private Long id;
+	private String nome;
+	private String descricao;
+	private Date dataInicio;
 	
 	public Tarefa() {}
 
