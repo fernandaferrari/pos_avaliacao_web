@@ -1,0 +1,1 @@
+Implementar um controle de autenticação a sua escolha (login e senha, token, etc.) e criar um repositório para controle de versão disponibilizando em alguma plataforma colaborativa (GitHub, GitLab, etc.).
