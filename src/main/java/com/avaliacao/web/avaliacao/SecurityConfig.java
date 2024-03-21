@@ -18,6 +18,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 	
+	@SuppressWarnings("deprecation")
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		 http
@@ -26,39 +27,22 @@ public class SecurityConfig {
              .permitAll() // Permitir acesso a arquivos CSS
              .anyRequest().authenticated()
              .and()
-			.formLogin((form) -> form
+			.formLogin(form -> form
 					.loginPage("/login")
 					.permitAll()
 			);
 	return http.build();
 	}
-
-    @Bean
-    UserDetailsService userDetailsService() {
-		UserDetails userDetails = User.withDefaultPasswordEncoder()
-			.username("user")
-			.password("password")
-			.roles("USER")
-			.build();
-
-		return new InMemoryUserDetailsManager(userDetails);
-	}
     
-//    @Bean
-//    UserDetailsService users(DataSource dataSource) {
-//    	UserDetails user = User.builder()
-//    		.username("user")
-//    		.password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
-//    		.roles("USER")
-//    		.build();
-//    	UserDetails admin = User.builder()
-//    		.username("admin")
-//    		.password("{bcrypt}$2a$10$GRLdNijSQMUvl/au9ofL.eDwmoohzzS7.rmNSJZ.0FxO/BTk76klW")
-//    		.roles("USER", "ADMIN")
-//    		.build();
-//    	JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
-//    	users.createUser(user);
-//    	users.createUser(admin);
-//    	return users;
-//    }
+    @Bean
+    UserDetailsService users(DataSource dataSource) {
+    	UserDetails user = User.builder()
+    		.username("nome")
+    		.password("senha")
+    		.roles("Usuario")
+    		.build();
+    	JdbcUserDetailsManager users = new JdbcUserDetailsManager(dataSource);
+    	users.createUser(user);
+    	return users;
+    }
 }

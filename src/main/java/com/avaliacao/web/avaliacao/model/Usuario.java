@@ -1,5 +1,7 @@
 package com.avaliacao.web.avaliacao.model;
 
+import com.avaliacao.web.avaliacao.vo.CadastroVO;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,6 +22,11 @@ public class Usuario {
 		super();
 		this.nome = nome;
 		this.senha = senha;
+	}
+
+	public Usuario(CadastroVO novoCadastro) {
+		this.nome = novoCadastro.getNomeUsuario();
+		this.senha = novoCadastro.getSenha();
 	}
 
 	public Long getId() {
