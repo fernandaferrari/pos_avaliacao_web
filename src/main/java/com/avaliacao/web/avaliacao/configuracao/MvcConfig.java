@@ -1,4 +1,4 @@
-package com.avaliacao.web.avaliacao;
+package com.avaliacao.web.avaliacao.configuracao;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

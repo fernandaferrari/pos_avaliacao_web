@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.avaliacao.web.avaliacao.UsuarioService;
 import com.avaliacao.web.avaliacao.model.Usuario;
+import com.avaliacao.web.avaliacao.service.UsuarioService;
 import com.avaliacao.web.avaliacao.vo.CadastroVO;
 
 @Controller
@@ -18,11 +18,11 @@ public class CadastroController {
 	
 	@GetMapping("/signup")
     public String signup(Model model) {
-		model.addAttribute("novaTarefa", new CadastroVO());
+        model.addAttribute("novoCadastro", new CadastroVO());
         return "cadastro";
     }
 	
-	@PostMapping("/salvar")
+	@PostMapping("/salvarCadastro")
 	public String salvarNovoCadastro(@ModelAttribute("novoCadastro") CadastroVO novoCadastro) {
 		try {
 			Usuario user = new Usuario(novoCadastro);

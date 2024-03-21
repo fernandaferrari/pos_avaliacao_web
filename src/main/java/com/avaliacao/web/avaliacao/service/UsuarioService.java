@@ -1,18 +1,20 @@
-package com.avaliacao.web.avaliacao;
+package com.avaliacao.web.avaliacao.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.avaliacao.web.avaliacao.model.Usuario;
 import com.avaliacao.web.avaliacao.repository.UsuarioRepository;
 
+@Service
 public class UsuarioService implements UserDetailsService{
 
 	@Autowired private UsuarioRepository usuarioRepository;
-	@Autowired private BCryptPasswordEncoder passwordEncoder;
+	@Autowired private PasswordEncoder passwordEncoder;
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -23,7 +25,7 @@ public class UsuarioService implements UserDetailsService{
         return org.springframework.security.core.userdetails.User
             .withUsername(username)
             .password(usuario.getSenha())
-            .roles("USER")
+            .roles("Usuario")
             .build();
 	}
 
