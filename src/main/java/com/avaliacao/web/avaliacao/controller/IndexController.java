@@ -24,7 +24,7 @@ public class IndexController {
 
 	@Autowired TarefaRepository tarefaRepository;
 	
-	@GetMapping("/")
+	@GetMapping("/index")
     public String index(Model model) { 
         List<Tarefa> tarefas = this.tarefaRepository.findAll();
         model.addAttribute("tarefas", tarefas);
@@ -44,7 +44,7 @@ public class IndexController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-        return "redirect:/";
+        return "redirect:/index";
 	}
 	
 	@GetMapping("/buscarTarefa/{id}")
@@ -58,7 +58,7 @@ public class IndexController {
 	@GetMapping("/excluirTarefa/{id}")
     public String excluirTarefa(@PathVariable Long id) {
 		this.tarefaRepository.deleteById(id);
-        return "redirect:/";
+        return "redirect:/index";
     }
 	
 }

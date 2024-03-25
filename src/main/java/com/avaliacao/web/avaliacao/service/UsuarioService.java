@@ -34,4 +34,9 @@ public class UsuarioService implements UserDetailsService{
 		user.setSenha(senhaCriptografada);
 		usuarioRepository.save(user);
 	}
+
+	public boolean autenticarUsuario(String username, String senha) {
+	    UserDetails userDetails = loadUserByUsername(username);
+	    return passwordEncoder.matches(senha, userDetails.getPassword());
+	}
 }

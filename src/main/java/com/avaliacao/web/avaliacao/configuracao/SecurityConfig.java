@@ -25,7 +25,7 @@ public class SecurityConfig {
         http
             .authorizeRequests(authorizeRequests ->
                 authorizeRequests
-                .requestMatchers("/signup","/salvarCadastro").permitAll() 
+                .requestMatchers("/signup","/salvarCadastro", "/auth", "/index", "/salvarTarefa", "/buscarTarefa/**", "/excluirTarefa/**").permitAll() 
                     .requestMatchers("/css/**", "/cadastro.html").permitAll()
                     .anyRequest().authenticated()
             )
@@ -46,7 +46,7 @@ public class SecurityConfig {
     @Bean
     UserDetailsService userDetailsService(DataSource dataSource) {
         JdbcUserDetailsManager userDetailsManager = new JdbcUserDetailsManager(dataSource);
-        userDetailsManager.setUsersByUsernameQuery("SELECT nome, senha, enabled FROM usuario WHERE nome = ?");
+        userDetailsManager.setUsersByUsernameQuery("SELECT nome, senha, 1 as enabled FROM usuario WHERE nome = ?");
         //userDetailsManager.setAuthoritiesByUsernameQuery("SELECT username, authority FROM custom_authorities WHERE username = ?");
         return userDetailsManager;
     }
