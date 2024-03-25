@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>Tela de cadastro</title>
+    <meta charset="UTF-8">
+    <title>Cadastro</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <style>
+		h2 {
+		    text-align: center; /* Centralizar o texto */
+		}
+    </style>
 </head>
 <body>
-    <h2>Cadastro</h2>
-    <form th:action="@{/salvarCadastro}" method="post">
-        <input type="text" name="nomeUsuario" placeholder="Nome do usuário" required><br>
-        <input type="password" name="senha" placeholder="Senha" required><br>
-        <button type="submit">Cadastrar</button>
-    </form>
+    <div class="login-page">
+        <h2>Cadastro</h2>
+        <div class="form">
+            <form class="login-form" th:action="@{/salvarCadastro}" method="post">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+                <input type="text" name="nomeUsuario" placeholder="Nome do usuário" required><br>
+                <input type="password" name="senha" placeholder="Senha" required><br>
+                <button type="submit">Cadastrar</button>
+            </form>
+            <a th:href="@{/login}">Já tem conta? Faça login aqui!</a>
+        </div>
+    </div>
 </body>
 </html>
